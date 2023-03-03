@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="./imagenes/icono repositorio.png">
+    <link rel="stylesheet" href="estilos.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Elgueta Jeremias </title>
+</head>
+
+<body>
+
+    <canvas id="c"> </canvas>
+
+    <script>var c = document.getElementById("c");
+        var ctx = c.getContext("2d");
+
+        function setCanvasDimensions() {
+            c.height = window.innerHeight;
+            c.width = window.innerWidth;
+            columns = c.width / font_size;
+            drops = [];
+            for (var x = 0; x < columns; x++)
+                drops[x] = 1;
+        }
+
+        // Call setCanvasDimensions on page load
+        setCanvasDimensions();
+
+        // Call setCanvasDimensions on window resize
+        window.addEventListener('resize', setCanvasDimensions);
+
+        var matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        matrix = matrix.split("");
+
+        var font_size = 8;
+        var columns = c.width / font_size;
+        var drops = [];
+
+        for (var x = 0; x < columns; x++)
+            drops[x] = 1;
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+            ctx.fillRect(0, 0, c.width, c.height);
+
+            ctx.fillStyle = "#0F0";
+            ctx.font = font_size + "px arial";
+
+            for (var i = 0; i < drops.length; i++) {
+                var text = matrix[Math.floor(Math.random() * matrix.length)];
+                ctx.fillText(text, i * font_size, drops[i] * font_size);
+
+                if (drops[i] * font_size > c.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 30);
+
+    </script>
+
+
+
+    <!--PRESENTACION-->
+
+    <section class="presentation">
+
+        <div class="box-presentation">
+
+            <h1>Bienvenido a mi portafolios</h1>
+
+            <P>Soy Jeremias Elgueta </p>
+            <p>Ven a conocerme y a descrubir mis habilidades, proyectos, ambiciones y más!
+            </P>
+
+        </div>
+
+
+    </section>
+
+
+
+
+<!--HABILIDADES Y HERRAMIENTAS-->
+
+
+<div class="box-hyh">
+
+    <section class="herramientas">
+
+        <div class="titulo-herramientas">
+
+            <h1>Herramientas</h1>
+        </div>
+
+
+
+
+        <div class="conteudo-geral">
+            <div class="conteudo-geral-sliderGeral">
+                <div class="sliderGeral">
+
+                    <div class="sliderGeral-card">
+                        <h1>HTML</h1>
+                    </div>
+                    <div class="sliderGeral-card">
+                        <h1>CSS</h1>
+                    </div>
+                    <div class="sliderGeral-card">
+                        <h1>Midjourney</h1>
+                    </div>
+                    <div class="sliderGeral-card">
+                        <h1>Chatgpt</h1>
+                    </div>
+                    <div class="sliderGeral-card">
+                        <h1>GitHub</h1>
+                    </div>
+                    <div class="sliderGeral-card">
+                        <h1>Javascript</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <section class="body-habilidades">
+
+        <div class="titulo-habilidades">
+
+            <h1>Habilidades</h1>
+
+        </div>
+
+
+        <div class="box-cards">
+
+            <div class="card">
+
+                <div class="face front">
+                    <h3>?</h3>
+                </div>
+
+                <div class="face back">
+
+                    <h3>Desarrollo web</h3>
+                    <p>Creación de páginas web de todo tipo, interactivas, creativas y divertidas
+                    </p>
+
+                    <div class="link">
+                        <a href="#">Detalles</a>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="card">
+
+                <div class="face front">
+                    <h3>?</h3>
+                </div>
+
+                <div class="face back">
+
+                    <h3>Diseños</h3>
+                    <p>Diseños creados con ayuda de inteligencia artificial: logos, arte, fotografía, ilustracion,
+                        diseño gráfico
+                    </p>
+
+                    <div class="link">
+                        <a href="#">Detalles</a>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="face front">
+                    <h3>?</h3>
+                </div>
+
+                <div class="face back">
+
+                    <h3>Contenido</h3>
+                    <p>Creacion de contenido: videos, guíones, libros, artículos para blogs, resumenes, posts de
+                        redes
+                        sociales, textos persuasivos, palabras claves SEO,etc. </p>
+
+                    <div class="link">
+                        <a href="#">Detalles</a>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </section>
+
+</div>
+
+<script>
+
+    const conteudoGeralElement = document.querySelector(".conteudo-geral");
+    const containerCarrousel = conteudoGeralElement.querySelector(
+        ".conteudo-geral-sliderGeral"
+    );
+    const sliderGeral = conteudoGeralElement.querySelector(".sliderGeral");
+    const itemsDoSlider = sliderGeral.querySelectorAll(".sliderGeral-card");
+
+    // variaveis que mudarão de estados ao longo do código
+    let mouseEmCima = false;
+    let posicaoAtualDoMouse = 0;
+    let ultimaPosicaoDoMouse = 0;
+    let ultimoMovimentoDoMouse = 0;
+    let moverPara = 0;
+
+    const inicioSlider = () => {
+        const propriedadesSlider = onResize();
+        const tamanhoGeral = itemsDoSlider.length; // Longitud del array
+        const tamanhoEmGraus = 360 / tamanhoGeral; // Grados por cada item
+        const gap = 30; // espaco entre os items
+        const tz = distanciaHorizontal(propriedadesSlider.w, tamanhoGeral, gap);
+
+        const height = calcularAltura(tz);
+
+        conteudoGeralElement.style.width = tz * 1 + gap * tamanhoGeral + "px";
+        conteudoGeralElement.style.height = height + "px";
+
+        itemsDoSlider.forEach((item, i) => {
+            const grausPorItem = tamanhoEmGraus * i + "deg";
+            item.style.setProperty("--rotatey", grausPorItem);
+            item.style.setProperty("--tz", tz + "px");
+        });
+    };
+
+    // suavidade da animação
+    const suavicaoDaAnimacao = (a, b, n) => {
+        return n * (a - b) + b;
+    };
+
+    const distanciaHorizontal = (larguraElemento, tamanhoGeral, gap) => {
+        return larguraElemento / 2 / Math.tan(Math.PI / tamanhoGeral) + gap; // Distancia horizontal dos items
+    };
+
+    //calcula a altura do container usando o campo de visão e a distância da perspectiva
+    const calcularAltura = (z) => {
+        const t = Math.atan((90 * Math.PI) / 180 / 2);
+        const height = t * 2 * z;
+
+        return height;
+    };
+
+    //calcula o campo de visão do sliderGeral
+    const calculCampoDeVisao = (propriedadesSlider) => {
+        const perpectiva = window
+            .getComputedStyle(containerCarrousel)
+            .perspective.split("px")[0];
+
+        const tamanhoGeral =
+            Math.sqrt(propriedadesSlider.w * propriedadesSlider.w) +
+            Math.sqrt(propriedadesSlider.h * propriedadesSlider.h);
+        const fov = 2 * Math.atan(tamanhoGeral / (2 * perpectiva)) * (180 / Math.PI);
+        return fov;
+    };
+
+    //busca a posição X e avalia se a posição é direita ou esquerda
+    const getPosX = (x) => {
+        posicaoAtualDoMouse = x;
+
+        moverPara =
+            posicaoAtualDoMouse < ultimaPosicaoDoMouse ? moverPara - 2 : moverPara + 2;
+
+        ultimaPosicaoDoMouse = posicaoAtualDoMouse;
+    };
+
+    const atualizacaoGeral = () => {
+        ultimoMovimentoDoMouse = suavicaoDaAnimacao(
+            moverPara,
+            ultimoMovimentoDoMouse,
+            0.3
+        );
+        sliderGeral.style.setProperty("--rotatey", ultimoMovimentoDoMouse + "deg");
+
+        requestAnimationFrame(atualizacaoGeral);
+    };
+
+    const onResize = () => {
+        //busca as propriedades do tamanho do sliderGeral
+        const boundingCarrousel = containerCarrousel.getBoundingClientRect();
+
+        const propriedadesSlider = {
+            w: boundingCarrousel.width,
+            h: boundingCarrousel.height,
+        };
+
+        return propriedadesSlider;
+    };
+
+    const iniciarLogicaGeral = () => {
+        //evento que detecta se o mouse está em cima do sliderGeral
+        sliderGeral.addEventListener("mousedown", () => {
+            mouseEmCima = true;
+            sliderGeral.style.cursor = "grabbing";
+        });
+        sliderGeral.addEventListener("mouseup", () => {
+            mouseEmCima = false;
+            sliderGeral.style.cursor = "grab";
+        });
+        conteudoGeralElement.addEventListener(
+            "mouseleave",
+            () => (mouseEmCima = false)
+        );
+
+        sliderGeral.addEventListener(
+            "mousemove",
+            (e) => mouseEmCima && getPosX(e.clientX)
+        );
+
+        //evento que detecta se o mouse está clicando em cima do sliderGeral
+        sliderGeral.addEventListener("touchstart", () => {
+            mouseEmCima = true;
+            sliderGeral.style.cursor = "grabbing";
+        });
+        sliderGeral.addEventListener("touchend", () => {
+            mouseEmCima = false;
+            sliderGeral.style.cursor = "grab";
+        });
+        conteudoGeralElement.addEventListener(
+            "touchmove",
+            (e) => mouseEmCima && getPosX(e.touches[0].clientX)
+        );
+
+        window.addEventListener("resize", inicioSlider);
+
+        atualizacaoGeral();
+        inicioSlider();
+    };
+
+    iniciarLogicaGeral();
+
+</script>
+
+<!--SOBRE MI-->
+
+<section class="sobremi">
+
+
+    <div class="box-de-infos">
+
+
+
+
+
+        <div class="box-info">
+
+            <h2>Sobre mi</h2>
+
+            <div class="contenido">
+
+                <p>Soy un joven con ambiciones, me gusta aprender cosas nuevas, pero tambien me gustan
+                    los ratos libres, soy una persona responsable con mis deberes y mis metas, me gusta la
+                    filosofía, el arte, la ciencia, los juegos y la programación, nunca entregaré un trabajo que
+                    no me enorgullezca</p>
+            </div>
+
+        </div>
+
+        <div class="box-info">
+            <h2>Hobbies</h2>
+
+            <div class="contenido">
+
+                <li class="li-hobbie">
+                    <p class="p">Skateboarding</p>
+                </li>
+                <li class="li-hobbie">
+                    <p class="p">Programación</p>
+                </li>
+                <li class="li-hobbie">
+                    <p class="p">Videojuegos</p>
+                </li>
+                <li class="li-hobbie">
+                    <p class="p">Arte</p>
+                </li>
+                <li class="li-hobbie">
+                    <p class="p">Historia</p>
+                </li>
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+</section>
+
+
+
+<!--PROYECTOS-->
+
+<section class="proyectos">
+
+    <div class="box-lista">
+        <h1>Proyectos</h1>
+
+
+        <nav>
+
+            <li class="shadow-pop-br"><a href="#">Arteficialmente</a></li>
+            <li class="shadow-pop-br"><a href="#">Miel Beauty Nails</a></li>
+            <li class="shadow-pop-br"><a href="#">Beroisa intervenciones</a></li>
+
+        </nav>
+
+    </div>
+
+
+    <div class="contacto">
+        <h1>Contacto</h1>
+
+
+
+        <div class="wrapper">
+            <div class="social-icons">
+
+
+                <a class="social-icon whatsapp"
+                    href="https://wa.me/15551234?text=Hola,%20estoy%20interesado%20en%20en%20un%20servicio%20"
+                    target="_blank" rel="author">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+
+                <a class="social-icon facebook" href="https://www.facebook.com/Arteficialmente" target="_blank"
+                    rel="author">
+                    <i class="fab fa-facebook"></i>
+                </a>
+
+                <a class="social-icon instagram" href="https://www.instagram.com/arteficialmente_/" target="_blank"
+                    rel="author">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a class="social-icon github" href="https://github.com/Elguetah" target="_blank" rel="author">
+                    <i class="fab fa-github"></i>
+                </a>
+
+
+            </div>
+        </div>
+
+
+
+
+        <script src="https://kit.fontawesome.com/70c682a6d6.js" crossorigin="anonymous"></script>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+<!--FOOTER-->
+
+<footer>
+    <span>&copy;Jeremias elgueta</span>
+</footer>
+
+</body>
+
+</html>
